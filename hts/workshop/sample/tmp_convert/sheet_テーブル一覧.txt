@@ -1,0 +1,124 @@
+=== シート: テーブル一覧 ===
+
+寸法: A1:BF22
+最大行: 22, 最大列: 58
+
+マージセル (90 個):
+  B11:D11
+  P20:Z20
+  AG19:BE19
+  AA20:AF20
+  AG12:BE12
+  E8:O8
+  P22:Z22
+  P6:Z6
+  AG5:BE5
+  AG14:BE14
+  E10:O10
+  B6:D6
+  AA12:AF12
+  B20:D20
+  AA14:AF14
+  AG21:BE21
+  E22:O22
+  AG7:BE7
+  AG16:BE16
+  E12:O12
+  E21:O21
+  B8:D8
+  B17:D17
+  P10:Z10
+  E5:O5
+  AG18:BE18
+  E14:O14
+  B10:D10
+  AA16:AF16
+  B19:D19
+  P9:Z9
+  B9:D9
+  AA18:AF18
+  P11:Z11
+  AG20:BE20
+  B5:D5
+  AA11:AF11
+  AG22:BE22
+  AG6:BE6
+  P13:Z13
+  E16:O16
+  AA13:AF13
+  B21:D21
+  P15:Z15
+  AA6:AF6
+  E18:O18
+  AA15:AF15
+  B14:D14
+  B13:D13
+  AA7:AF7
+  E20:O20
+  AG8:BE8
+  E13:O13
+  AG10:BE10
+  E6:O6
+  P17:Z17
+  E15:O15
+  AA17:AF17
+  AG9:BE9
+  AA22:AF22
+  P19:Z19
+  AA19:AF19
+  B22:D22
+  P12:Z12
+  AG11:BE11
+  E7:O7
+  AA9:AF9
+  B12:D12
+  P5:Z5
+  P14:Z14
+  AA5:AF5
+  AG13:BE13
+  E17:O17
+  AG15:BE15
+  P21:Z21
+  E19:O19
+  P8:Z8
+  B15:D15
+  AA21:AF21
+  E9:O9
+  P7:Z7
+  P16:Z16
+  E11:O11
+  AA8:AF8
+  B7:D7
+  B16:D16
+  P18:Z18
+  AA10:AF10
+  B18:D18
+  AG17:BE17
+
+【データ内容】
+
+行番号 | A | B | C | D | E | F | G | H | I | J | K | L | M | N | O | P | Q | R | S | T | U | V | W | X | Y | Z | AA | AB | AC | AD | AE | AF | AG | AH | AI | AJ | AK | AL | AM | AN | AO | AP | AQ | AR | AS | AT | AU | AV | AW | AX | AY | AZ | BA | BB | BC | BD | BE | BF
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+1 |  | システム名 |  |  |  |  | 管理会計システム |  |  |  |  |  |  |  |  | 画面名 |  |  |  |  | 編集管理 |  |  |  |  |  |  |  |  | 作成日 |  |  |  |  | 2025年11月5日 |  |  |  |  |  |  |  |  | 変更日 |  |  |  |  | 2026年1月30日 |  |  |  |  |  |  |  |  | 
+2 |  | 区分 |  |  |  |  | 編集管理 |  |  |  |  |  |  |  |  | 種別 |  |  |  |  | テーブル一覧 |  |  |  |  |  |  |  |  | 作成者 |  |  |  |  | 栄　幸祐 |  |  |  |  |  |  |  |  | 変更者 |  |  |  |  | 井上　裕之 |  |  |  |  |  |  |  |  | 
+3 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+4 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+5 |  | No. |  |  | 論理名 |  |  |  |  |  |  |  |  |  |  | 物理名 |  |  |  |  |  |  |  |  |  |  | 種別 |  |  |  |  |  | 概要 |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+6 |  | =ROW() - 5 |  |  | 制作見積 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10aab5160> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E6)),"中間",IF(ISNUMBER(SEARCH("マスタ",E6)),"マスタ","トランザクション")) |  |  |  |  |  | 営業から依頼された制作見積依頼全体のステータスを管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+7 |  | =ROW() - 5 |  |  | 制作見積依頼 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10ab00e10> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E7)),"中間",IF(ISNUMBER(SEARCH("マスタ",E7)),"マスタ","トランザクション")) |  |  |  |  |  | 制作見積依頼を作業部署ごとに割振り、そのステータスを管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+8 |  | =ROW() - 5 |  |  | 制作見積詳細 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10ab03110> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E8)),"中間",IF(ISNUMBER(SEARCH("マスタ",E8)),"マスタ","トランザクション")) |  |  |  |  |  | 作業部署ごとの加工品内容コード別の見積内容を管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+9 |  | =ROW() - 5 |  |  | 作業部門別制作見積 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10ab803e0> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E9)),"中間",IF(ISNUMBER(SEARCH("マスタ",E9)),"マスタ","トランザクション")) |  |  |  |  |  | 制作見積後、加工品内容コードから作業部門別単位での合算し、管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+10 |  | =ROW() - 5 |  |  | 制作見積差戻管理 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10ab80510> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E10)),"中間",IF(ISNUMBER(SEARCH("マスタ",E10)),"マスタ","トランザクション")) |  |  |  |  |  | 制作見積の差戻理由、バージョン管理を行うテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+11 |  | =ROW() - 5 |  |  | 制作基準価格 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10aa07bf0> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E11)),"中間",IF(ISNUMBER(SEARCH("マスタ",E11)),"マスタ","トランザクション")) |  |  |  |  |  | 受注における加工品内容ごとの制作基準価格を管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+12 |  | =ROW() - 5 |  |  | ランク単価マスタ |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10aa1aad0> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E12)),"中間",IF(ISNUMBER(SEARCH("マスタ",E12)),"マスタ","トランザクション")) |  |  |  |  |  | ランク単価データを管理するマスタテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+13 |  | =ROW() - 5 |  |  | ランク単価マスタ履歴 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10aa19370> |  |  |  |  |  |  |  |  |  |  | トランザクション |  |  |  |  |  | ランク単価マスタの変更履歴を管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+14 |  | =ROW() - 5 |  |  | 個人別ランク単価マスタ |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10a9afd50> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E14)),"中間",IF(ISNUMBER(SEARCH("マスタ",E14)),"マスタ","トランザクション")) |  |  |  |  |  | 個人別ランク単価データを管理するマスタテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+15 |  | =ROW() - 5 |  |  | 個人別ランク単価マスタ履歴 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10a9afa50> |  |  |  |  |  |  |  |  |  |  | トランザクション |  |  |  |  |  | 個人別ランク単価マスタの変更履歴を管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+16 |  | =ROW() - 5 |  |  | 原価単価マスタ |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10aa0d130> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E16)),"中間",IF(ISNUMBER(SEARCH("マスタ",E16)),"マスタ","トランザクション")) |  |  |  |  |  | 原価単価データを管理するマスタテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+17 |  | =ROW() - 5 |  |  | 原価単価マスタ履歴 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10aa0e300> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E17)),"中間",IF(ISNUMBER(SEARCH("マスタ",E17)),"マスタ","トランザクション")) |  |  |  |  |  | 原価単価マスタの変更履歴を管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+18 |  | =ROW() - 5 |  |  | 作業振分 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10aa3cc90> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E18)),"中間",IF(ISNUMBER(SEARCH("マスタ",E18)),"マスタ","トランザクション")) |  |  |  |  |  | 主管センターから各作業部署への作業振分を管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+19 |  | =ROW() - 5 |  |  | 作業項目別作業設計 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10aa3c9f0> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E19)),"中間",IF(ISNUMBER(SEARCH("マスタ",E19)),"マスタ","トランザクション")) |  |  |  |  |  | 加工品内容コードごとの作業設計を管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+20 |  | =ROW() - 5 |  |  | 担当者別作業設計 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10aa67ad0> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E20)),"中間",IF(ISNUMBER(SEARCH("マスタ",E20)),"マスタ","トランザクション")) |  |  |  |  |  | 担当者ごとの作業設計を管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+21 |  | =ROW() - 5 |  |  | 作業実績 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10aa034d0> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E21)),"中間",IF(ISNUMBER(SEARCH("マスタ",E21)),"マスタ","トランザクション")) |  |  |  |  |  | 担当者ごとの作業別の実績データを管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 
+22 |  | =ROW() - 5 |  |  | 社内仕掛在庫金額計上 |  |  |  |  |  |  |  |  |  |  | <openpyxl.worksheet.formula.ArrayFormula object at 0x10aa03290> |  |  |  |  |  |  |  |  |  |  | =IF(ISNUMBER(SEARCH("◆",E22)),"中間",IF(ISNUMBER(SEARCH("マスタ",E22)),"マスタ","トランザクション")) |  |  |  |  |  | 社内仕掛在庫に対する計上データを管理するテーブル |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  | 

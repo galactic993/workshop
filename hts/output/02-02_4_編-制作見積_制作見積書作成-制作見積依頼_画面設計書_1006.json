@@ -1,0 +1,427 @@
+{
+  "metadata": {
+    "システム名": "管理会計システム",
+    "画面名": "制作見積書作成<制作見積依頼>",
+    "作成日": "2025年10月7日",
+    "変更日": "2026年1月15日",
+    "サブシステム名": "編集管理",
+    "種別": "表紙",
+    "作成者": "高嶋　幸太",
+    "変更者": "高嶋　幸太"
+  },
+  "events": [
+    {
+      "event_no": "EVENT0001",
+      "trigger": "初期表示時",
+      "type": "JavaScript",
+      "process_main": "1.JavaScript有効化判定\n2．権限判定\n3.見積情報取得",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0002",
+      "trigger": "制作見積依頼 - 担当部署(▶ボタン)押下時",
+      "type": "JavaScript",
+      "process_main": "1.展開/折り畳み",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0003",
+      "trigger": "制作見積依頼 - 担当部署選択（入力）時",
+      "type": "JavaScript",
+      "process_main": "1.部署選択\n2.入力チェック",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0004",
+      "trigger": "制作見積依頼 - 依頼概要入力時",
+      "type": "JavaScript",
+      "process_main": "1.入力チェック",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0005",
+      "trigger": "制作見積依頼 - 参考資料入力時",
+      "type": "JavaScript",
+      "process_main": "1.入力チェック",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0006",
+      "trigger": "制作見積依頼 - 「削除(アイコン)」ボタン押下時",
+      "type": "JavaScript",
+      "process_main": "1.項目削除",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0007",
+      "trigger": "制作見積依頼 - 「依頼フォーム追加」ボタン押下時",
+      "type": "JavaScript",
+      "process_main": "1.項目追加",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0008",
+      "trigger": "「依頼登録」ボタン押下時",
+      "type": "JavaScript",
+      "process_main": "1.入力チェック\n2.情報登録/更新\n3.メール送信",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0009",
+      "trigger": "「一覧へ戻る」ボタン押下時",
+      "type": "JavaScript",
+      "process_main": "1.画面遷移",
+      "process_sub1": "",
+      "process_sub2": ""
+    }
+  ],
+  "items": [
+    {
+      "no": "1",
+      "name": "見積情報詳細 - 見積書No",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "2",
+      "name": "見積情報詳細 - 営業担当(社員名)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "3",
+      "name": "見積情報詳細 - 得意先(得意先コード)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "4",
+      "name": "見積情報詳細 - 得意先(得意先名)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "5",
+      "name": "見積情報詳細 - 主管部署(センター名)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "6",
+      "name": "見積情報詳細 - 見積件名",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "7",
+      "name": "見積情報詳細 - 品名",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "8",
+      "name": "見積情報詳細 - 見積概要",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "9",
+      "name": "見積情報詳細 - 参考資料",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "10",
+      "name": "制作見積依頼 - 担当部署(▶)",
+      "type": "ボタン",
+      "event_no": "EVENT0002",
+      "control_type": "JavaScript",
+      "control_detail": "初期表示では折り畳み状態",
+      "message": ""
+    },
+    {
+      "no": "11",
+      "name": "制作見積依頼 - 担当部署選択",
+      "type": "プルダウン",
+      "event_no": "EVENT0003",
+      "control_type": "JavaScript",
+      "control_detail": "・必須",
+      "message": "部署を選択してください"
+    },
+    {
+      "no": "12",
+      "name": "制作見積依頼 - 依頼概要",
+      "type": "テキストインプット",
+      "event_no": "EVENT0004",
+      "control_type": "JavaScript",
+      "control_detail": "・必須",
+      "message": "依頼概要は入力必須です"
+    },
+    {
+      "no": "13",
+      "name": "制作見積依頼 - 参考資料",
+      "type": "テキストインプット",
+      "event_no": "EVENT0005",
+      "control_type": "JavaScript",
+      "control_detail": "・任意",
+      "message": ""
+    },
+    {
+      "no": "14",
+      "name": "制作見積依頼 - 削除(アイコン)",
+      "type": "ボタン",
+      "event_no": "EVENT0006",
+      "control_type": "JavaScript",
+      "control_detail": "制作見積依頼フォームが一つのみの場合",
+      "message": ""
+    },
+    {
+      "no": "15",
+      "name": "制作見積依頼 - 依頼フォーム追加",
+      "type": "ボタン",
+      "event_no": "EVENT0007",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "16",
+      "name": "依頼登録",
+      "type": "ボタン",
+      "event_no": "EVENT0008",
+      "control_type": "JavaScript",
+      "control_detail": "・No.11，12，13参照",
+      "message": "・No.11，12，13参照"
+    },
+    {
+      "no": "17",
+      "name": "一覧へ戻る",
+      "type": "ボタン",
+      "event_no": "EVENT0009",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "18",
+      "name": "登録処理確認メッセージ - メッセージ",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "19",
+      "name": "登録処理確認メッセージ - 登録",
+      "type": "ボタン",
+      "event_no": "EVENT0010",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "20",
+      "name": "登録処理確認メッセージ - キャンセル",
+      "type": "ボタン",
+      "event_no": "EVENT0011",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    }
+  ],
+  "db_values": [
+    {
+      "no": "1",
+      "name": "ステータス",
+      "field_name": "prod_quot_status",
+      "condition": "",
+      "value": "10(制作見積中)"
+    },
+    {
+      "no": "2",
+      "name": "更新日",
+      "field_name": "updated_at",
+      "condition": "",
+      "value": "レコード登録日時"
+    },
+    {
+      "no": "制作見積依頼",
+      "name": "",
+      "field_name": "",
+      "condition": "",
+      "value": ""
+    },
+    {
+      "no": "No.",
+      "name": "項目名",
+      "field_name": "フィールド名",
+      "condition": "その他条件",
+      "value": "登録値"
+    },
+    {
+      "no": "1",
+      "name": "制作見積依頼id",
+      "field_name": "prod_quot_request_id",
+      "condition": "",
+      "value": "自動採番"
+    },
+    {
+      "no": "2",
+      "name": "制作見積id",
+      "field_name": "prod_quot_id",
+      "condition": "",
+      "value": "制作見積依頼が紐づく制作見積id　制作見積.prod_quot_id"
+    },
+    {
+      "no": "3",
+      "name": "作業部署id",
+      "field_name": "section_cd_id",
+      "condition": "",
+      "value": "入力値に紐づくセンターの部署コードマスタid"
+    },
+    {
+      "no": "4",
+      "name": "依頼者id",
+      "field_name": "requested_by",
+      "condition": "",
+      "value": "登録者に紐づく社員マスタid　社員マスタ.employee_id"
+    },
+    {
+      "no": "5",
+      "name": "依頼概要",
+      "field_name": "request_summary",
+      "condition": "",
+      "value": "ユーザー入力値"
+    },
+    {
+      "no": "6",
+      "name": "参考資料",
+      "field_name": "reference_doc_path",
+      "condition": "",
+      "value": "ユーザー入力値"
+    },
+    {
+      "no": "7",
+      "name": "根拠資料",
+      "field_name": "supporting_doc_path",
+      "condition": "",
+      "value": "Null"
+    },
+    {
+      "no": "8",
+      "name": "設計者id",
+      "field_name": "designed_by",
+      "condition": "",
+      "value": "Null"
+    },
+    {
+      "no": "9",
+      "name": "承認者id",
+      "field_name": "approved_by",
+      "condition": "",
+      "value": "Null"
+    },
+    {
+      "no": "10",
+      "name": "承認日時",
+      "field_name": "approved_at",
+      "condition": "",
+      "value": "Null"
+    },
+    {
+      "no": "11",
+      "name": "ステータス",
+      "field_name": "prod_quot_request_status",
+      "condition": "",
+      "value": "00(設計中)"
+    },
+    {
+      "no": "12",
+      "name": "作成日",
+      "field_name": "created_at",
+      "condition": "登録時",
+      "value": "レコード登録日時"
+    },
+    {
+      "no": "13",
+      "name": "更新日",
+      "field_name": "updated_at",
+      "condition": "",
+      "value": "レコード登録日時"
+    }
+  ],
+  "messages": [
+    {
+      "no": "1",
+      "condition": "権限判定(画面遷移時) - 権限なし",
+      "type": "エラー",
+      "message": "アクセス権限がありません"
+    },
+    {
+      "no": "2",
+      "condition": "見積情報取得(初期表示) - 応答なし",
+      "type": "エラー",
+      "message": "見積情報の取得に失敗しました。時間を空けて再度お試しください"
+    },
+    {
+      "no": "3",
+      "condition": "制作見積依頼登録/更新 - 値不正",
+      "type": "エラー",
+      "message": "入力内容に誤りがあります。各項目をご確認ください"
+    },
+    {
+      "no": "4",
+      "condition": "制作見積依頼登録/更新 - POST値不正",
+      "type": "エラー",
+      "message": "制作見積依頼情報の登録に失敗しました"
+    },
+    {
+      "no": "5",
+      "condition": "制作見積依頼登録/更新 - 応答なし",
+      "type": "エラー",
+      "message": "制作見積依頼情報の登録に失敗しました。時間を空けて再度お試しください"
+    },
+    {
+      "no": "6",
+      "condition": "制作見積依頼登録/更新 - 成功",
+      "type": "サクセス",
+      "message": "登録しました"
+    }
+  ]
+}

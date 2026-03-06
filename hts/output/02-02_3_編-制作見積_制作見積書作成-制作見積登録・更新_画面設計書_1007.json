@@ -1,0 +1,1002 @@
+{
+  "metadata": {
+    "システム名": "管理会計システム",
+    "画面名": "制作見積書作成<登録・更新>",
+    "作成日": "2025年10月7日",
+    "変更日": "2026年1月15日",
+    "サブシステム名": "編集管理",
+    "種別": "表紙",
+    "作成者": "高嶋　幸太",
+    "変更者": "高嶋　幸太"
+  },
+  "events": [
+    {
+      "event_no": "EVENT0001",
+      "trigger": "初期表示時",
+      "type": "JavaScript",
+      "process_main": "1.JavaScript有効化判定\n2．権限判定\n3.制作見積依頼情報取得",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0002",
+      "trigger": "「見積情報を確認」リンク押下時",
+      "type": "JavaScript",
+      "process_main": "1.モーダル表示",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0003",
+      "trigger": "「流用見積情報検索」ボタン押下時",
+      "type": "JavaScript",
+      "process_main": "1.モーダル表示",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0004",
+      "trigger": "制作見積 - 加工品内容コード選択時",
+      "type": "JavaScript",
+      "process_main": "1.加工品内容コード選択\n2.入力チェック\n3.値自動挿入",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0005",
+      "trigger": "制作見積 - 数量入力時",
+      "type": "JavaScript",
+      "process_main": "1.入力チェック\n2.値自動挿入",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0006",
+      "trigger": "制作見積 - 根拠資料入力時",
+      "type": "JavaScript",
+      "process_main": "1.入力チェック",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0007",
+      "trigger": "制作見積 - 「＋」ボタン押下時",
+      "type": "JavaScript",
+      "process_main": "1.項目追加",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0008",
+      "trigger": "制作見積 - 「×」ボタン押下時",
+      "type": "JavaScript",
+      "process_main": "1.項目削除",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0009",
+      "trigger": "「保存」ボタン押下時",
+      "type": "JavaScript",
+      "process_main": "1.入力チェック\n2.情報登録/更新\n3.ボタン有効化",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0010",
+      "trigger": "「出力」ボタン押下時",
+      "type": "JavaScript",
+      "process_main": "1.出力処理",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0011",
+      "trigger": "「登録」ボタン押下時",
+      "type": "JavaScript",
+      "process_main": "1.情報更新",
+      "process_sub1": "",
+      "process_sub2": ""
+    },
+    {
+      "event_no": "EVENT0012",
+      "trigger": "「一覧へ戻る」ボタン押下時",
+      "type": "JavaScript",
+      "process_main": "1.画面遷移",
+      "process_sub1": "",
+      "process_sub2": ""
+    }
+  ],
+  "items": [
+    {
+      "no": "1",
+      "name": "制作見積依頼内容 - メッセージ",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "2",
+      "name": "制作見積依頼内容 - 依頼者(社員名)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "3",
+      "name": "制作見積依頼内容 - 依頼概要",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "4",
+      "name": "制作見積依頼内容 - 参考資料",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "5",
+      "name": "見積情報を確認",
+      "type": "リンク",
+      "event_no": "EVENT0002",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "6",
+      "name": "流用見積情報検索",
+      "type": "ボタン",
+      "event_no": "EVENT0003",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "7",
+      "name": "制作見積 - 加工品内容コード選択",
+      "type": "プルダウン",
+      "event_no": "EVENT0004",
+      "control_type": "JavaScript",
+      "control_detail": "・必須",
+      "message": "加工品内容コードは選択必須です"
+    },
+    {
+      "no": "8",
+      "name": "制作見積 - 作業内容",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "9",
+      "name": "制作見積 - 単価",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "10",
+      "name": "制作見積 - 数量",
+      "type": "テキストインプット",
+      "event_no": "EVENT0005",
+      "control_type": "JavaScript",
+      "control_detail": "・必須",
+      "message": "数量は入力必須です"
+    },
+    {
+      "no": "11",
+      "name": "制作見積 - 金額",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "12",
+      "name": "制作見積 - 合計金額",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "13",
+      "name": "制作見積 - 根拠資料",
+      "type": "テキストインプット",
+      "event_no": "EVENT0006",
+      "control_type": "JavaScript",
+      "control_detail": "・任意",
+      "message": "・任意"
+    },
+    {
+      "no": "14",
+      "name": "制作見積 - ＋",
+      "type": "ボタン",
+      "event_no": "EVENT0007",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "15",
+      "name": "制作見積 - ×",
+      "type": "ボタン",
+      "event_no": "EVENT0008",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "16",
+      "name": "保存",
+      "type": "ボタン",
+      "event_no": "EVENT0009",
+      "control_type": "JavaScript",
+      "control_detail": "・No.7，10，13参照",
+      "message": "・No.7，10，13参照"
+    },
+    {
+      "no": "17",
+      "name": "出力",
+      "type": "ボタン",
+      "event_no": "EVENT0010",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "18",
+      "name": "登録",
+      "type": "ボタン",
+      "event_no": "EVENT0011",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "19",
+      "name": "一覧へ戻る",
+      "type": "ボタン",
+      "event_no": "EVENT0012",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "20",
+      "name": "見積情報詳細 - 見積書No",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "21",
+      "name": "見積情報詳細 - 営業担当(社員名)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "22",
+      "name": "見積情報詳細 - 得意先(得意先コード)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "23",
+      "name": "見積情報詳細 - 得意先(得意先名)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "24",
+      "name": "見積情報詳細 - 主管部署(センター名)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "25",
+      "name": "見積情報詳細 - 見積件名",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "26",
+      "name": "見積情報詳細 - 品名",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "27",
+      "name": "見積情報詳細 - 見積概要",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "28",
+      "name": "見積情報詳細 - 参考資料",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "29",
+      "name": "見積情報詳細 - 閉じる",
+      "type": "ボタン",
+      "event_no": "EVENT0013",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "30",
+      "name": "保存処理確認メッセージ - メッセージ",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "31",
+      "name": "保存処理確認メッセージ - 保存",
+      "type": "ボタン",
+      "event_no": "EVENT0014",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "32",
+      "name": "保存処理確認メッセージ - キャンセル",
+      "type": "ボタン",
+      "event_no": "EVENT0015",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "33",
+      "name": "登録（確定）処理確認メッセージ - メッセージ",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "34",
+      "name": "登録（確定）処理確認メッセージ - 登録",
+      "type": "ボタン",
+      "event_no": "EVENT0016",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "35",
+      "name": "登録（確定）処理確認メッセージ - キャンセル",
+      "type": "ボタン",
+      "event_no": "EVENT0017",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "36",
+      "name": "流用見積情報検索 - 工番(年号 - 通番)",
+      "type": "テキストインプット",
+      "event_no": "EVENT0018",
+      "control_type": "JavaScript",
+      "control_detail": "・任意",
+      "message": ""
+    },
+    {
+      "no": "37",
+      "name": "流用見積情報検索 - 見積書No",
+      "type": "テキストインプット",
+      "event_no": "EVENT0019",
+      "control_type": "JavaScript",
+      "control_detail": "・任意",
+      "message": ""
+    },
+    {
+      "no": "38",
+      "name": "流用見積情報検索 - 得意先",
+      "type": "テキストインプット",
+      "event_no": "EVENT0020",
+      "control_type": "JavaScript",
+      "control_detail": "・任意",
+      "message": ""
+    },
+    {
+      "no": "39",
+      "name": "流用見積情報検索 - 見積件名",
+      "type": "テキストインプット",
+      "event_no": "EVENT0021",
+      "control_type": "JavaScript",
+      "control_detail": "・任意",
+      "message": ""
+    },
+    {
+      "no": "40",
+      "name": "流用見積情報検索 - 品名",
+      "type": "テキストインプット",
+      "event_no": "EVENT0022",
+      "control_type": "JavaScript",
+      "control_detail": "・任意",
+      "message": ""
+    },
+    {
+      "no": "41",
+      "name": "流用見積情報検索 - 見積日(開始日 - 終了日)",
+      "type": "テキストインプット",
+      "event_no": "EVENT0023",
+      "control_type": "JavaScript",
+      "control_detail": "・任意",
+      "message": ""
+    },
+    {
+      "no": "42",
+      "name": "流用見積情報検索 - クリア",
+      "type": "ボタン",
+      "event_no": "EVENT0024",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "43",
+      "name": "流用見積情報検索 - 検索",
+      "type": "ボタン",
+      "event_no": "EVENT0025",
+      "control_type": "JavaScript",
+      "control_detail": "・No36，37，38，39，40，41参照",
+      "message": "・No36，37，38，39，40，41参照"
+    },
+    {
+      "no": "44",
+      "name": "流用見積情報検索 - 見積情報一覧 -",
+      "type": "ラジオボタン",
+      "event_no": "EVENT0026",
+      "control_type": "JavaScript",
+      "control_detail": "・必須",
+      "message": "見積情報を選択してください"
+    },
+    {
+      "no": "45",
+      "name": "流用見積情報検索 - 見積情報一覧 -",
+      "type": "リンク",
+      "event_no": "EVENT0027",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "46",
+      "name": "流用見積情報検索 - 見積情報一覧 - 得意先",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "47",
+      "name": "流用見積情報検索 - 見積情報一覧 - 工番",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "48",
+      "name": "流用見積情報検索 - 見積情報一覧 - 基準価格",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "49",
+      "name": "流用見積情報検索 - 選択",
+      "type": "ボタン",
+      "event_no": "EVENT0028",
+      "control_type": "JavaScript",
+      "control_detail": "・No44参照",
+      "message": "・No44参照"
+    },
+    {
+      "no": "50",
+      "name": "流用見積情報検索 - キャンセル",
+      "type": "ボタン",
+      "event_no": "EVENT0029",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "51",
+      "name": "流用見積情報詳細 - 見積書No",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "52",
+      "name": "流用見積情報詳細 - 営業担当(社員名)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "53",
+      "name": "流用見積情報詳細 - 得意先(得意先コード)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "54",
+      "name": "流用見積情報詳細 - 得意先(得意先名)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "55",
+      "name": "流用見積情報詳細 - 主管部署(センター名)",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "56",
+      "name": "流用見積情報詳細 - 見積件名",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "57",
+      "name": "流用見積情報詳細 - 品名",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "58",
+      "name": "流用見積情報詳細 - 見積概要",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "59",
+      "name": "流用見積情報詳細 - 参考資料",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "60",
+      "name": "流用見積情報詳細 - 工番",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "61",
+      "name": "流用見積情報詳細 - 加工品内容コード",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "62",
+      "name": "流用見積情報詳細 - 作業内容",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "63",
+      "name": "流用見積情報詳細 - 単価",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "64",
+      "name": "流用見積情報詳細 - 数量",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "65",
+      "name": "流用見積情報詳細 - 金額",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "66",
+      "name": "流用見積情報詳細 - 合計金額",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "67",
+      "name": "流用見積情報詳細 - 根拠資料",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "68",
+      "name": "流用見積情報詳細 - 閉じる",
+      "type": "ボタン",
+      "event_no": "EVENT0030",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "69",
+      "name": "出力処理確認メッセージ - メッセージ",
+      "type": "テキスト",
+      "event_no": "",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "70",
+      "name": "出力処理確認メッセージ - 出力",
+      "type": "ボタン",
+      "event_no": "EVENT0031",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    },
+    {
+      "no": "71",
+      "name": "出力処理確認メッセージ - キャンセル",
+      "type": "ボタン",
+      "event_no": "EVENT0032",
+      "control_type": "JavaScript",
+      "control_detail": "",
+      "message": ""
+    }
+  ],
+  "db_values": [
+    {
+      "no": "1",
+      "name": "基準価格",
+      "field_name": "cost",
+      "condition": "",
+      "value": "各作業部署が見積もった金額の集約値"
+    },
+    {
+      "no": "2",
+      "name": "更新日",
+      "field_name": "updated_at",
+      "condition": "",
+      "value": "レコード登録日時"
+    },
+    {
+      "no": "制作見積依頼",
+      "name": "",
+      "field_name": "",
+      "condition": "",
+      "value": ""
+    },
+    {
+      "no": "No.",
+      "name": "項目名",
+      "field_name": "フィールド名",
+      "condition": "その他条件",
+      "value": "登録値"
+    },
+    {
+      "no": "1",
+      "name": "根拠資料",
+      "field_name": "supporting_doc_path",
+      "condition": "",
+      "value": "ユーザー入力値"
+    },
+    {
+      "no": "2",
+      "name": "設計者id",
+      "field_name": "designed_by",
+      "condition": "",
+      "value": "制作見積を担当した社員に紐づく社員マスタid　社員マスタ.employee_id"
+    },
+    {
+      "no": "3",
+      "name": "ステータス",
+      "field_name": "prod_quot_request_status",
+      "condition": "新規登録時/更新時/承認取消後の更新時",
+      "value": "更新なし"
+    },
+    {
+      "no": "4",
+      "name": "更新日",
+      "field_name": "updated_at",
+      "condition": "",
+      "value": "レコード登録日時"
+    },
+    {
+      "no": "制作見積詳細",
+      "name": "",
+      "field_name": "",
+      "condition": "",
+      "value": ""
+    },
+    {
+      "no": "No.",
+      "name": "項目名",
+      "field_name": "フィールド名",
+      "condition": "その他条件",
+      "value": "登録値"
+    },
+    {
+      "no": "1",
+      "name": "制作見積詳細id",
+      "field_name": "prod_quot_detail_id",
+      "condition": "",
+      "value": "自動採番"
+    },
+    {
+      "no": "2",
+      "name": "制作見積依頼id",
+      "field_name": "prod_quot_request_id",
+      "condition": "",
+      "value": "制作見積詳細に紐づく制作見積依頼id"
+    },
+    {
+      "no": "3",
+      "name": "加工品内容id",
+      "field_name": "proces_cd_id",
+      "condition": "",
+      "value": "入力値に紐づく加工品内容コードマスタid"
+    },
+    {
+      "no": "4",
+      "name": "設計者id",
+      "field_name": "employee_id",
+      "condition": "",
+      "value": "制作見積を担当した社員に紐づく社員マスタid　社員マスタ.employee_id"
+    },
+    {
+      "no": "5",
+      "name": "数量",
+      "field_name": "quantity",
+      "condition": "",
+      "value": "ユーザー入力値"
+    },
+    {
+      "no": "6",
+      "name": "単価",
+      "field_name": "unit_cost",
+      "condition": "",
+      "value": "自動挿入　加工品内容.unit_price"
+    },
+    {
+      "no": "7",
+      "name": "金額",
+      "field_name": "cost",
+      "condition": "",
+      "value": "自動挿入　数量×単価"
+    },
+    {
+      "no": "8",
+      "name": "作成日",
+      "field_name": "created_at",
+      "condition": "登録時",
+      "value": "レコード登録日時"
+    },
+    {
+      "no": "9",
+      "name": "更新日",
+      "field_name": "updated_at",
+      "condition": "",
+      "value": "レコード登録日時"
+    }
+  ],
+  "messages": [
+    {
+      "no": "1",
+      "condition": "権限判定(画面遷移時) - 権限なし",
+      "type": "エラー",
+      "message": "アクセス権限がありません"
+    },
+    {
+      "no": "2",
+      "condition": "制作見積依頼情報取得(初期表示) - 応答なし",
+      "type": "エラー",
+      "message": "制作見積依頼情報の取得に失敗しました。時間を空けて再度お試しください"
+    },
+    {
+      "no": "3",
+      "condition": "制作見積保存(登録/更新) - 値不正",
+      "type": "エラー",
+      "message": "入力内容に誤りがあります。各項目をご確認ください"
+    },
+    {
+      "no": "4",
+      "condition": "制作見積保存(登録/更新) - POST値不正",
+      "type": "エラー",
+      "message": "制作見積の保存に失敗しました"
+    },
+    {
+      "no": "5",
+      "condition": "制作見積保存(登録/更新) - 応答なし",
+      "type": "エラー",
+      "message": "制作見積の保存に失敗しました。時間を空けて再度お試しください"
+    },
+    {
+      "no": "6",
+      "condition": "制作見積保存(登録/更新) - 成功",
+      "type": "サクセス",
+      "message": "保存しました"
+    },
+    {
+      "no": "7",
+      "condition": "制作見積登録(確定) - POST値不正",
+      "type": "エラー",
+      "message": "制作見積の登録（確定）に失敗しました"
+    },
+    {
+      "no": "8",
+      "condition": "制作見積登録(確定) - 応答なし",
+      "type": "エラー",
+      "message": "制作見積の登録（確定）に失敗しました。時間を空けて再度お試しください"
+    },
+    {
+      "no": "9",
+      "condition": "制作見積登録(確定) - 成功",
+      "type": "サクセス",
+      "message": "登録（確定）しました"
+    },
+    {
+      "no": "10",
+      "condition": "制作見積出力- 応答なし",
+      "type": "エラー",
+      "message": "制作見積データの出力に失敗しました。時間を空けて再度お試しください"
+    },
+    {
+      "no": "11",
+      "condition": "制作見積出力- 成功",
+      "type": "サクセス",
+      "message": "出力しました"
+    },
+    {
+      "no": "12",
+      "condition": "見積情報詳細モーダル表示時 - 応答なし",
+      "type": "エラー",
+      "message": "見積情報の取得に失敗しました。時間を空けて再度お試しください"
+    },
+    {
+      "no": "13",
+      "condition": "流用見積情報詳細モーダル表示時 - 応答なし",
+      "type": "エラー",
+      "message": "見積情報の取得に失敗しました。時間を空けて再度お試しください"
+    },
+    {
+      "no": "14",
+      "condition": "流用見積情報検索 - 値不正",
+      "type": "エラー",
+      "message": "入力内容に誤りがあります。各項目をご確認ください"
+    },
+    {
+      "no": "15",
+      "condition": "流用見積情報検索 - POST値不正",
+      "type": "エラー",
+      "message": "見積情報の検索に失敗しました"
+    },
+    {
+      "no": "16",
+      "condition": "流用見積情報検索 - 応答なし",
+      "type": "エラー",
+      "message": "見積情報の検索に失敗しました。時間を空けて再度お試しください"
+    },
+    {
+      "no": "17",
+      "condition": "流用見積情報選択 - 値不正",
+      "type": "エラー",
+      "message": "見積情報を選択してください"
+    },
+    {
+      "no": "18",
+      "condition": "流用見積情報選択 - POST値不正",
+      "type": "エラー",
+      "message": "エラーが発生しました"
+    },
+    {
+      "no": "19",
+      "condition": "流用見積情報選択 - 応答なし",
+      "type": "エラー",
+      "message": "エラーが発生しました。時間を空けて再度お試しください"
+    }
+  ]
+}

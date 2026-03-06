@@ -1,0 +1,52 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Documentation (keep only docs/)
+# docs/ は含めない（バージョン管理対象）
+
+# Temporary files
+*.tmp
+*.temp
+cookies.txt
+
+# SSH Keys (SECURITY: Never commit private keys!)
+.ssh/
+*.pem
+*.key
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+
+# SSH keys
+.ssh/
+
+# Basic認証ファイル（VPS用）
+docker/nginx/.htpasswd
+
+# Docker Compose オーバーライド（環境固有設定）
+docker-compose.override.yml
+
+# Claude Code session files
+.claude/context/

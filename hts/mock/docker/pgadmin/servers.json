@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "OA Dev PostgreSQL",
+      "Group": "Servers",
+      "Host": "postgres",
+      "Port": 5432,
+      "MaintenanceDB": "oa_dev",
+      "Username": "postgres",
+      "SSLMode": "prefer"
+    }
+  }
+}
