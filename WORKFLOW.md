@@ -1,62 +1,152 @@
-# WORKFLOW
+---
+tracker:
+  kind: linear
+  project_slug: "e3bfb6c23ae9"
+  active_states:
+    - Todo
+    - In Progress
+    - Human Review
+    - Merging
+    - Rework
+  terminal_states:
+    - Closed
+    - Cancelled
+    - Canceled
+    - Duplicate
+    - Done
+polling:
+  interval_ms: 5000
+workspace:
+  root: /Users/izutanikazuki/symphony-workspaces/workshop
+hooks:
+  after_create: |
+    set -e
+    git_dir_root=/Users/izutanikazuki/.codex-gitdirs/workshop
+    workspace_name="$(basename "$PWD")"
+    git_dir="$git_dir_root/$workspace_name"
+    mkdir -p "$git_dir_root"
+    rm -rf "$git_dir"
+    git clone --depth 1 --separate-git-dir "$git_dir" git@github.com:galactic993/workshop.git .
+  before_remove: |
+    git_dir_root=/Users/izutanikazuki/.codex-gitdirs/workshop
+    git_dir=""
+    if [ -f .git ]; then
+      git_dir="$(sed -n 's/^gitdir: //p' .git | head -n 1)"
+    fi
+    if [ -z "$git_dir" ]; then
+      git_dir="$git_dir_root/$(basename "$PWD")"
+    fi
+    case "$git_dir" in
+      /*) ;;
+      *) git_dir="$PWD/$git_dir" ;;
+    esac
+    if [ -n "$git_dir" ] && [ -d "$git_dir" ]; then
+      rm -rf "$git_dir"
+    fi
+agent:
+  max_concurrent_agents: 8
+  max_turns: 100
+codex:
+  command: codex --config shell_environment_policy.inherit=all --config model_reasoning_effort=high --config 'sandbox_workspace_write.writable_roots=["/Users/izutanikazuki/.codex-gitdirs/workshop"]' --config 'sandbox_workspace_write.network_access=true' --model gpt-5.4 app-server
+  approval_policy: never
+  thread_sandbox: workspace-write
+  turn_sandbox_policy:
+    type: workspaceWrite
+    writableRoots:
+      - /Users/izutanikazuki/symphony-workspaces/workshop
+      - /Users/izutanikazuki/.codex-gitdirs/workshop
+    readOnlyAccess:
+      type: fullAccess
+    networkAccess: true
+    excludeTmpdirEnvVar: false
+    excludeSlashTmp: false
+---
 
-## リポジトリの性質
+You are working on a Linear ticket `{{ issue.identifier }}`
 
-- `workshop` は単一アプリ repo ではありません。
-- 主に以下の 3 系統があります。
-  - `ssol/` : 研修資料・スライド
-  - `hts/workshop/` : Excel 設計書チェック用 Python スクリプト
-  - `hts/mock/` : 管理会計システムのモック環境（Next.js + Laravel + PostgreSQL + Redis）
-- 直下で統一の `npm run dev` は存在しません。対象を決めてから入ること。
+{% if attempt %}
+Continuation context:
 
-## 起動方法
+- This is retry attempt #{{ attempt }} because the ticket is still in an active state.
+- Resume from the current workspace state instead of restarting from scratch.
+- Do not repeat already-completed investigation or validation unless needed for new code changes.
+- Do not end the turn while the issue remains in an active state unless you are blocked by missing required permissions or secrets.
+{% endif %}
 
-### `ssol/` 研修資料
+Issue context:
+Identifier: {{ issue.identifier }}
+Title: {{ issue.title }}
+Current status: {{ issue.state }}
+Labels: {{ issue.labels }}
+URL: {{ issue.url }}
 
-- 基本的に起動不要です。Markdown / スライド資料を編集します。
-- 必要なら `ssol/slides/generate-pptx.js` でスライド生成フローを確認します。
+Description:
+{% if issue.description %}
+{{ issue.description }}
+{% else %}
+No description provided.
+{% endif %}
 
-### `hts/workshop/` Excel チェック
+Instructions:
 
-1. `cd /Users/izutanikazuki/symphony-workspaces/workshop/hts/workshop`
-2. `python3 -m venv venv`
-3. `source venv/bin/activate`
-4. `pip install pandas openpyxl`
-5. `python3 check_excel_cross_reference.py`
+1. This is an unattended orchestration session. Never ask a human to perform routine follow-up actions.
+2. Only stop early for a true blocker such as missing required auth, permissions, or secrets. If blocked, record it in the workpad and move the issue according to workflow.
+3. Final message must report completed actions and blockers only. Do not include "next steps for user".
 
-### `hts/mock/` 管理会計システム
+Work only in the provided repository copy. Do not touch any other path.
 
-1. `cd /Users/izutanikazuki/symphony-workspaces/workshop/hts/mock`
-2. env 準備
-   - `cp .env.example .env`
-   - `cp backend/.env.example backend/.env`
-   - `cp frontend/.env.example frontend/.env.local`
-3. Docker 起動
-   - `docker compose up -d --build`
-4. 初回セットアップ
-   - `docker compose exec frontend npm install`
-   - `docker compose exec backend composer install`
-   - `docker compose exec backend php artisan key:generate`
-   - `docker compose exec backend php artisan migrate`
-   - `docker compose exec backend php artisan db:seed`
-5. アクセス
-   - Nginx 経由: `http://localhost`
+## Repository quick reference
 
-## 検証
+- Repository type: mixed workshop repository. It is not a single app.
+- Major subtrees:
+  - `ssol/` -> training materials and slides; usually docs-only work
+  - `hts/workshop/` -> Python-based Excel cross-check tooling
+  - `hts/mock/` -> Dockerized mock management system with frontend, backend, DB, and Redis
+- There is no meaningful root-level `npm run dev`. Choose the target subtree first.
+- Typical commands by target:
+  - `ssol/`: edit docs/slides only; generate artifacts only when the ticket requires it
+  - `hts/workshop/`: create venv, `pip install pandas openpyxl`, then `python3 check_excel_cross_reference.py`
+  - `hts/mock/`: `docker compose up -d --build`, then frontend/backend setup and validation inside containers
+- Legacy absolute paths under `/Users/izutanikazuki/kzp/fileMaker/...` still appear in some workshop docs and scripts. Validate path assumptions before running them.
 
-### `hts/workshop/`
+## Default posture
 
-- スクリプト実行結果: `check_result.md`
-- 追加確認: `README_CHECK_SCRIPT.md`, `SCRIPT_DOCUMENTATION.md`
+- Start by reading the current Linear issue state and route work according to that state.
+- Keep one persistent `## Codex Workpad` comment as the source of truth for plan, notes, acceptance criteria, and validation.
+- Identify the exact target subtree before editing anything.
+- Reproduce the current behavior or establish a concrete signal before editing.
+- Sync with `origin/main` before code changes and record the result in the workpad.
+- Preserve unexpected existing edits and keep ticket state aligned with reality.
 
-### `hts/mock/`
+## Status map
 
-- frontend lint: `docker compose exec frontend npm run lint`
-- frontend test: `docker compose exec frontend npm test`
-- backend test: `docker compose exec backend php artisan test`
+- `Backlog` -> do not modify the issue or repository; stop.
+- `Todo` -> move to `In Progress` before active work.
+- `In Progress` -> implement and validate.
+- `Human Review` -> wait for review or address feedback.
+- `Merging` -> follow the repository's normal landing flow and do not bypass checks.
+- `Rework` -> address requested changes and revalidate.
+- `Done` -> no action.
 
-## 注意点
+## Required execution flow
 
-- `hts/workshop` 配下の一部資料と Python スクリプトは、今も `/Users/izutanikazuki/kzp/fileMaker/training/...` の旧絶対パスを参照しています
-- そのまま動く前提で読むとハマるので、現 repo パスに合わせて読み替えるか修正してから実行すること
-- `ssol`, `hts/workshop`, `hts/mock` は目的が別物です。混ぜて考えると作業指示が壊れます
+1. Fetch the issue by explicit ticket ID and read the current state.
+2. For `Todo`, immediately set the issue to `In Progress`, then create or reuse the single `## Codex Workpad` comment.
+3. Keep the workpad updated with a hierarchical plan, acceptance criteria, validation checklist, and a short environment stamp `<host>:<abs-workdir>@<short-sha>`.
+4. Choose the target subtree first and record that choice in the workpad.
+5. Sync with `origin/main` before edits and record the result in the workpad.
+6. Implement the minimum change needed for the ticket inside the selected subtree.
+7. Run only the validations that match the touched area.
+8. Update the workpad after each meaningful milestone.
+9. Move the issue only when the validation bar is actually met.
+
+## PR feedback sweep
+
+- If a PR already exists for the branch, review top-level and inline feedback before returning to `Human Review`.
+- Treat actionable review comments as blocking until code/docs are updated or a justified pushback is recorded.
+- Re-run the relevant validation after feedback-driven changes.
+
+## Blockers
+
+- Missing Docker, missing Python dependencies, missing env files, or stale path assumptions that make the selected subtree non-runnable are valid blockers.
+- If blocked, record the exact missing dependency and attempted command in the workpad, then stop.
