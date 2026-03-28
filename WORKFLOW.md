@@ -21,45 +21,18 @@ workspace:
 hooks:
   after_create: |
     set -e
-    git_dir_root=/Users/izutanikazuki/.codex-gitdirs/workshop
-    workspace_name="$(basename "$PWD")"
-    git_dir="$git_dir_root/$workspace_name"
-    mkdir -p "$git_dir_root"
-    rm -rf "$git_dir"
-    git clone --depth 1 --separate-git-dir "$git_dir" git@github.com:galactic993/workshop.git .
+    git clone --depth 1 git@github.com:galactic993/workshop.git .
   before_remove: |
-    git_dir_root=/Users/izutanikazuki/.codex-gitdirs/workshop
-    git_dir=""
-    if [ -f .git ]; then
-      git_dir="$(sed -n 's/^gitdir: //p' .git | head -n 1)"
-    fi
-    if [ -z "$git_dir" ]; then
-      git_dir="$git_dir_root/$(basename "$PWD")"
-    fi
-    case "$git_dir" in
-      /*) ;;
-      *) git_dir="$PWD/$git_dir" ;;
-    esac
-    if [ -n "$git_dir" ] && [ -d "$git_dir" ]; then
-      rm -rf "$git_dir"
-    fi
+    true
 agent:
   max_concurrent_agents: 8
   max_turns: 100
 codex:
-  command: codex --config shell_environment_policy.inherit=all --config model_reasoning_effort=high --config 'sandbox_workspace_write.writable_roots=["/Users/izutanikazuki/.codex-gitdirs/workshop"]' --config 'sandbox_workspace_write.network_access=true' --model gpt-5.4 app-server
+  command: codex --config shell_environment_policy.inherit=all --config model_reasoning_effort=high --model gpt-5.4 app-server
   approval_policy: never
-  thread_sandbox: workspace-write
+  thread_sandbox: danger-full-access
   turn_sandbox_policy:
-    type: workspaceWrite
-    writableRoots:
-      - /Users/izutanikazuki/symphony-workspaces/workshop
-      - /Users/izutanikazuki/.codex-gitdirs/workshop
-    readOnlyAccess:
-      type: fullAccess
-    networkAccess: true
-    excludeTmpdirEnvVar: false
-    excludeSlashTmp: false
+    type: dangerFullAccess
 ---
 
 You are working on a Linear ticket `{{ issue.identifier }}`
