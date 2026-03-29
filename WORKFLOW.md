@@ -17,7 +17,7 @@ tracker:
 polling:
   interval_ms: 5000
 workspace:
-  root: /Users/izutanikazuki/symphony-workspaces/workshop
+  root: /Users/izutanikazuki/symphony-workspaces
 hooks:
   after_create: |
     set -e
