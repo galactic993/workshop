@@ -113,7 +113,7 @@
 | 講義ベース | workshop/slides/第1回_AI駆動開発研修.md |
 | 設計書チェック | workshop/prompts/A1_イベント番号連番性.md ほか |
 | 要件抽出/実装準備プロンプト | workshop/prompts/D1_画面設計書Markdown変換.md ほか（内容を要件抽出向けに再利用） |
-| スキル化例 | workshop/skills/design-review.md |
+| スキル化例 | `shared-agent-skills/scripts/run-session1-claude-p.sh`（a1〜 / s1.5 並列） |
 
 
 ## 10. セキュリティ・ガバナンス合意項目

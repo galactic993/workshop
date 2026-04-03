@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+check_all_result.xlsx
+
+# claude -p 連続実行のログ
+session1-claude-runs/
