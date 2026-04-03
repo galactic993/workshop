@@ -1,59 +1,30 @@
 ---
 name: s1.5-design-check-verify
-description: 画面設計書チェック（s1.5-event-no 等）の動作検証。fixtures を生成し s1.5-all-docs を実行する。
+description: 画面設計書チェック（s1.5-*）の動作検証。最小の Excel ペアを用意し run-session1 で確認する。
 ---
 
 # s1.5-design-check-verify
 
 ## 目的
 
-`shared-agent-skills/skills/` 直下の `s1.5-*` Python スクリプトが、最小限の Excel 設計書で実行可能か検証する。
+`s1.5-*` スキルが、想定する Excel 形式で問題なく解釈できるか、研修・デモ用の **最小の画面設計書・テーブル定義書ペア** で確認する。
 
 ## 手順
 
-1. 依存関係（このディレクトリで仮想環境を推奨）:
+1. 手元の作業フォルダに最小限の画面設計書・テーブル定義書を用意し、ファイル名のプレフィックス（共/売/編など）が対応するようにする（[`scripts/validate_design_table_pair.sh`](../../scripts/validate_design_table_pair.sh) と同じ命名規則）。
+2. リポジトリルートで:
 
 ```bash
-cd skills/s1.5-design-check-verify
-python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+./scripts/run-session1-claude-p.sh /path/to/画面設計書.xlsx /path/to/テーブル定義書.xlsx
 ```
 
-2. フィクスチャ生成:
-
-```bash
-.venv/bin/python scripts/build_minimal_fixtures.py
-```
-
-3. 一括チェック（`--skills-dir` に `shared-agent-skills/skills` を指定）:
-
-```bash
-# Claude に skills を入れている場合（デフォルトの ~/.claude/skills を参照）
-.venv/bin/python ~/.claude/skills/s1.5-all-docs/scripts/run_all_checks.py "$(pwd)/fixtures" --output check_all_result.xlsx
-
-# 本リポジトリの skills を直接使う場合（shared-agent-skills ルートで）
-cd /path/to/shared-agent-skills
-python skills/s1.5-all-docs/scripts/run_all_checks.py \
-  "$(pwd)/skills/s1.5-design-check-verify/fixtures" \
-  --skills-dir "$(pwd)/skills" \
-  --output "$(pwd)/skills/s1.5-design-check-verify/check_all_result.xlsx"
-```
-
-`design-check-verify` ディレクトリ内から相対パスで実行する場合:
-
-```bash
-.venv/bin/python ../s1.5-all-docs/scripts/run_all_checks.py "$(pwd)/fixtures" \
-  --skills-dir "$(pwd)/.." --output check_all_result.xlsx
-```
+3. `session1-claude-runs/<日時>/` の各 `.log` を確認する。
 
 ## 前提
 
-- Python 3 + `openpyxl`（`requirements.txt` 参照）
-- `s1.5-doc-format-pattern` … `s1.5-screen-capture` が `~/.claude/skills/` または **`shared-agent-skills/skills/`**（リポジトリ内の `skills` ルート）に揃っていること
-
-## 検証結果（実機実行）
-
-最小フィクスチャに対し、`s1.5-event-no` / `s1.5-message-format` / `s1.5-validation-consistency` / `s1.5-reference-spec` / `s1.5-doc-format-pattern` はレポート出力まで問題なく完了した。`s1.5-screen-capture` は埋め込み画像と Claude CLI に依存するため、同条件では WARN となり一括実行の終了コードが 1 になる（**実現は可能だが、画像解析環境のセットアップが別途必要**）。
+- `claude` CLI（`claude -p`）
+- `skills/` に `s1.5-doc-format-pattern` … `s1.5-screen-capture` が揃っていること
 
 ## 注意
 
-- `s1.5-screen-capture` は Claude CLI と埋め込み画像がないと WARN/SKIP になりやすい（環境依存）。
+- `s1.5-screen-capture` は埋め込み画像・環境依存で WARN になりやすい。

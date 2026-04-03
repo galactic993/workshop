@@ -10,17 +10,37 @@
 #   MAX_PARALLEL=4           同時実行数（既定 4）
 #   OUT_DIR=...              ログ出力先（既定 session1-claude-runs/<日時>）
 #   SKIP_S15_PROMPTS=1       s1.5 プロンプトスキルをスキップ
-#   RUN_S15_PYTHON=1         従来の Python 一括（s1.5-all-docs）も最後に実行（openpyxl 要）
-#   RUN_S15_PYTHON_STRICT=1  Python 失敗でスクリプト全体を失敗終了
 #   INTERACTIVE_FIX=0        修正確認プロンプトを出さない（非対話向け）
 #   CLAUDE_EXTRA_FLAGS       claude に追加で渡すフラグ
 #
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-VALIDATE="$ROOT/scripts/validate_design_table_pair.py"
-BUILD_PROMPT="$ROOT/scripts/build_skill_prompt.py"
+VALIDATE="$ROOT/scripts/validate_design_table_pair.sh"
 FIX_PROMPT_MD="$ROOT/scripts/prompts/fix_workbooks.md"
+
+# SKILL.md と画面・テーブルパスから claude -p 用プロンプトを生成する（stdout）。
+build_skill_prompt() {
+  local skill_md=$1
+  local screen=$2
+  local table=$3
+  local skill
+  skill="$(cat "$skill_md")"
+  cat <<EOF
+あなたは設計書レビューを行うアシスタントです。次のパスにある Excel を読み取れるようにツールを使ってください。
+
+- 画面設計書（フルパス）: ${screen}
+- テーブル定義書（フルパス）: ${table}
+
+B 系・D 系以外では、片方だけしか使わない指示のときは、不要なファイルは参照しなくて構いません。
+
+以下のスキル定義（Markdown 全体）に従い、結果をこのチャットに出力してください。
+
+---
+
+${skill}
+EOF
+}
 
 usage() {
   sed -n '1,25p' "$0" | tail -n +2
@@ -40,7 +60,7 @@ if [[ $# -gt 0 ]]; then
   exit 1
 fi
 
-python3 "$VALIDATE" "$SCREEN" "$TABLE" || exit 1
+bash "$VALIDATE" "$SCREEN" "$TABLE" || exit 1
 
 SESSION1_CHECK_SKILLS=(
   "a1-event-number-sequence"
@@ -71,8 +91,6 @@ S15_PROMPT_SKILLS=(
 WITH_MARKDOWN="${WITH_MARKDOWN:-0}"
 MAX_PARALLEL="${MAX_PARALLEL:-4}"
 SKIP_S15_PROMPTS="${SKIP_S15_PROMPTS:-0}"
-RUN_S15_PYTHON="${RUN_S15_PYTHON:-0}"
-RUN_S15_PYTHON_STRICT="${RUN_S15_PYTHON_STRICT:-0}"
 INTERACTIVE_FIX="${INTERACTIVE_FIX:-1}"
 
 OUT_DIR="${OUT_DIR:-$ROOT/session1-claude-runs/$(date +%Y%m%d-%H%M%S)}"
@@ -112,7 +130,7 @@ run_claude_skill() {
   fi
   set +e
   local PROMPT
-  PROMPT="$(python3 "$BUILD_PROMPT" "$skill_md" "$SCREEN" "$TABLE")"
+  PROMPT="$(build_skill_prompt "$skill_md" "$SCREEN" "$TABLE")"
   claude -p "$PROMPT" --print \
     --add-dir "$SCREEN_DIR" \
     --add-dir "$TABLE_DIR" \
@@ -150,41 +168,6 @@ for name in "${ALL[@]}"; do
     any_fail=1
   fi
 done
-
-# --- オプション: Python 一括（レガシー）---
-if [[ "$RUN_S15_PYTHON" == "1" ]]; then
-  SKILLS_DIR="$ROOT/skills"
-  RUN15="$SKILLS_DIR/s1.5-all-docs/scripts/run_all_checks.py"
-  if [[ ! -f "$RUN15" ]]; then
-    echo "Missing $RUN15" | tee -a "$OUT_DIR/run.log" >&2
-    any_fail=1
-  elif ! python3 -c "import openpyxl" 2>/dev/null; then
-    echo "RUN_S15_PYTHON: openpyxl が必要です（pip install openpyxl）" | tee -a "$OUT_DIR/run.log" >&2
-    any_fail=1
-  else
-    WORK15="$(mktemp -d "${TMPDIR:-/tmp}/session1.5-design.XXXXXX")"
-    # shellcheck disable=SC2064
-    trap 'rm -rf "$WORK15"' EXIT
-    ln -sf "$SCREEN" "$WORK15/$(basename "$SCREEN")"
-    ln -sf "$TABLE" "$WORK15/$(basename "$TABLE")"
-    echo "======== s1.5-all-docs (Python) ========" | tee -a "$OUT_DIR/run.log"
-    set +e
-    python3 "$RUN15" "$WORK15" \
-      --skills-dir "$SKILLS_DIR" \
-      --output "$OUT_DIR/check_all_result.xlsx" \
-      2>&1 | tee "$OUT_DIR/s1.5-all-docs-python.log"
-    ec15=${PIPESTATUS[0]}
-    set -e
-    echo "s1.5-all-docs (Python) exit=$ec15" | tee -a "$OUT_DIR/run.log"
-    if [[ "$ec15" -ne 0 ]]; then
-      any_fail=1
-      if [[ "$RUN_S15_PYTHON_STRICT" == "1" ]]; then
-        echo "RUN_S15_PYTHON_STRICT: 失敗終了" | tee -a "$OUT_DIR/run.log" >&2
-        exit "$ec15"
-      fi
-    fi
-  fi
-fi
 
 # --- 修正フロー（対話）---
 if [[ "$INTERACTIVE_FIX" == "1" ]] && [[ -t 0 ]] && [[ -t 1 ]]; then

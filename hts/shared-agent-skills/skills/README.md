@@ -5,7 +5,7 @@
 | 種別 | ディレクトリ名の例 |
 |------|---------------------|
 | 第一回講義（プロンプト系） | `a1-event-number-sequence` … `d1-unified-design-to-markdown` |
-| Session 1.5（プロンプト＋任意で Python） | `s1.5-event-no` など（`scripts/run-session1-claude-p.sh` が **プロンプトで並列実行**）。`s1.5-all-docs` は **Python 一括**用（`RUN_S15_PYTHON=1` のときのみオーケストレーションが呼ぶ） |
+| Session 1.5（プロンプト） | `s1.5-event-no` など（`scripts/run-session1-claude-p.sh` が **プロンプトで並列実行**）。`s1.5-all-docs` は **一括実行の案内**（個別スキルと同じ `run-session1` を参照） |
 | Session 1.5（補助・検証・Cowork） | `s1.5-design-check-verify` / `s1.5-cowork-screen-capture-review` |
 
 各プロンプトは **講義 ID（`a1` / `b1` …）＋説明スラッグ**（`name`・フォルダ名）で保持しています。元テキストは `workshop/session1-prompts-all/references/` と対応します。`claude -p` での **実行順**は `scripts/run-session1-claude-p.sh` 内の配列で定義されています。
@@ -36,7 +36,7 @@ cd /path/to/shared-agent-skills
 ./scripts/run-session1-claude-p.sh /path/to/画面設計書.xlsx /path/to/テーブル定義書.xlsx
 ```
 
-- ファイル存在と **ファイル名プレフィックス（共/売/編など）の一致**を検証（[`scripts/validate_design_table_pair.py`](../scripts/validate_design_table_pair.py)）
+- ファイル存在と **ファイル名プレフィックス（共/売/編など）の一致**を検証（[`scripts/validate_design_table_pair.sh`](../scripts/validate_design_table_pair.sh)）
 - 第一回スキル（a1–c3）＋任意で D1（`WITH_MARKDOWN=1`）＋ **s1.5 個別スキル 6 本**を **`claude -p` で並列**実行（`MAX_PARALLEL`、既定 4）
 - 終了後に **サマリ**を表示。任意で **コピー作成＋修正用 `claude -p`**（対話）
 
@@ -47,28 +47,17 @@ cd /path/to/shared-agent-skills
 | `WITH_MARKDOWN=1` | D1 を含める |
 | `MAX_PARALLEL` | 同時実行数（既定 4） |
 | `SKIP_S15_PROMPTS=1` | s1.5 プロンプト 6 本をスキップ |
-| `RUN_S15_PYTHON=1` | 最後に **Python** `s1.5-all-docs`（`run_all_checks.py`）も実行（`openpyxl` 要） |
 | `INTERACTIVE_FIX=0` | 修正確認プロンプトを出さない |
 | `OUT_DIR` | ログ出力先 |
 
 ログは `session1-claude-runs/<日時>/`（`.gitignore` 対象）。
 
-## Python 一括のみ手動で走らせる場合
-
-```bash
-python skills/s1.5-all-docs/scripts/run_all_checks.py /path/to/設計書フォルダ \
-  --skills-dir "$(pwd)/skills" \
-  --output /path/to/check_all_result.xlsx
-```
-
 ## 再生成（`references` から SKILL を書き戻す）
 
-```bash
-./scripts/generate_session1_skills.py
-```
+`workshop/session1-prompts-all/references/` の内容と突き合わせて、`skills/a1-*` などの `SKILL.md` を手で更新してください。
 
 ## 依存
 
 - `claude` CLI（`claude -p`）
-- Python 3（検証スクリプト・`RUN_S15_PYTHON` 時は `openpyxl`）
+- `bash`（検証スクリプト）
 - `s1.5-screen-capture`: 画像突合時は環境依存で WARN になりやすい

@@ -7,8 +7,8 @@
 | パス | 内容 |
 |------|------|
 | `skills/` | **すべてのスキルをフラット配置**。第一回講義は `a1-event-number-sequence` のように **番号＋スラッグ**、Session 1.5 系は **`s1.5-` プレフィックス**。詳細は [`skills/README.md`](skills/README.md) |
-| `scripts/run-session1-claude-p.sh` | **必須引数 2 つ**（画面設計書・テーブル定義書）で、第一回＋ s1.5 個別スキルを **`claude -p` 並列実行**。任意で `RUN_S15_PYTHON=1` 時のみ Python 一括。ログは `session1-claude-runs/` |
-| `scripts/validate_design_table_pair.py` | ファイル存在と **プレフィックス一致**（共/売/編など）の検証 |
+| `scripts/run-session1-claude-p.sh` | **必須引数 2 つ**（画面設計書・テーブル定義書）で、第一回＋ s1.5 個別スキルを **`claude -p` 並列実行**。ログは `session1-claude-runs/` |
+| `scripts/validate_design_table_pair.sh` | ファイル存在と **プレフィックス一致**（共/売/編など）の検証 |
 | `workshop/session1-prompts-all/` | 第一回講義プロンプト一括用 `SKILL.md` と `references/` |
 
 ## スキルの使い方（Claude / Claude Code）
@@ -23,20 +23,12 @@ cd /path/to/shared-agent-skills
 ```
 
 - D1（統合 Markdown）も含める: `WITH_MARKDOWN=1 ./scripts/run-session1-claude-p.sh ...`
-- Python 一括（`run_all_checks.py`）も最後に実行: `RUN_S15_PYTHON=1 ./scripts/run-session1-claude-p.sh ...`（`pip install openpyxl`）
 
 詳細は [`skills/README.md`](skills/README.md) を参照してください。
 
-## design-check-verify の実行例
+## design-check-verify
 
-```bash
-cd /path/to/shared-agent-skills/skills/s1.5-design-check-verify
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
-.venv/bin/python scripts/build_minimal_fixtures.py
-.venv/bin/python ../s1.5-all-docs/scripts/run_all_checks.py "$(pwd)/fixtures" \
-  --skills-dir "$(pwd)/.." --output check_all_result.xlsx
-```
+`s1.5-*` を最小フィクスチャで試す手順は [`skills/s1.5-design-check-verify/SKILL.md`](skills/s1.5-design-check-verify/SKILL.md) を参照してください。
 
 ## ライセンス・帰属
 
