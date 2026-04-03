@@ -1,6 +1,6 @@
 ---
 name: s1.5-design-check-verify
-description: 画面設計書チェック（s1.5-*）の動作検証。最小の Excel ペアを用意し run-session1 で確認する。
+description: 画面設計書チェック（s1.5-*）の動作検証。最小の Excel ペアを用意し run-all-check で確認する。
 ---
 
 # s1.5-design-check-verify
@@ -15,7 +15,7 @@ description: 画面設計書チェック（s1.5-*）の動作検証。最小の 
 2. リポジトリルートで:
 
 ```bash
-./scripts/run-session1-claude-p.sh /path/to/画面設計書.xlsx /path/to/テーブル定義書.xlsx
+./scripts/run-all-check.sh /path/to/画面設計書.xlsx /path/to/テーブル定義書.xlsx
 ```
 
 3. `session1-claude-runs/<日時>/` の各 `.log` を確認する。

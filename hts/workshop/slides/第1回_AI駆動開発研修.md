@@ -1106,7 +1106,7 @@ NOT NULL制約があるのにデフォルト値未設定の
 
 | スキル | コマンド | 内容 |
 |--------|---------|------|
-| 一括レビュー | `run-session1-claude-p.sh` | 画面＋テーブル指定で a1〜・s1.5 を並列実行 |
+| 一括レビュー | `run-all-check.sh` | 画面＋テーブル指定で a1〜・s1.5 を並列実行 |
 | D1（任意） | `WITH_MARKDOWN=1` + 同スクリプト | 統合 Markdown 変換スキル |
 | cross-review | `/cross-review` | B系クロスチェック |
 | batch-review | `/batch-review` | フォルダ内一括レビュー |

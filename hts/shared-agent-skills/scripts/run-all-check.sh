@@ -3,7 +3,7 @@
 # 必須引数: 画面設計書.xlsx テーブル定義書.xlsx
 #
 # 使い方:
-#   ./scripts/run-session1-claude-p.sh /path/to/画面設計書.xlsx /path/to/テーブル定義書.xlsx
+#   ./scripts/run-all-check.sh /path/to/画面設計書.xlsx /path/to/テーブル定義書.xlsx
 #
 # 環境変数（任意）:
 #   WITH_MARKDOWN=1          D1（統合 Markdown）も実行
